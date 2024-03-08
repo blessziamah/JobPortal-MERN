@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Banner from "../components/Banner.jsx";
 import Card from "../components/Card.jsx";
 import Jobs from "./Jobs.jsx";
+import Sidebar from "../sidebar/Sidebar.jsx";
 
 const Home = () => {
 	const [selectedCategory, setSelectedCategory] = useState(null)
@@ -72,7 +73,9 @@ const Home = () => {
 			<div className={"bg-[#FAFAFA] md:grid grid-cols-4 gap-8 lg:px-24 py-12"}>
 
 				{/*Left side*/}
-				<div className={"bg-white p-4 rounded"}>Left</div>
+				<div className={"bg-white p-4 rounded"}>
+					<Sidebar handleChange={handleChange} handleClick={handleClick()}/>
+				</div>
 
 				{/*Job cards*/}
 				<div className={"col-span-2 bg-white p-4 rounded"}><Jobs result={result} /></div>
