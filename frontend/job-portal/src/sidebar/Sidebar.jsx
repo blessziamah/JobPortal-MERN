@@ -3,6 +3,7 @@ import Location from "./Location.jsx";
 import Salary from "./Salary.jsx";
 import JobPostingData from "./JobPostingData.jsx";
 import WorkExperience from "./WorkExperience.jsx";
+import EmploymentType from "./EmploymentType.jsx";
 
 const Sidebar = ({handleChange, handleClick}) => {
 	return (
@@ -13,6 +14,7 @@ const Sidebar = ({handleChange, handleClick}) => {
 			<Salary handleChange={handleChange} handleClick={handleClick}/>
 			<JobPostingData handleChange={handleChange} />
 			<WorkExperience handleChange={handleChange} />
+			<EmploymentType handleChange={handleChange} />
 		</div>
 	);
 };
