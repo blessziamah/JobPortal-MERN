@@ -39,7 +39,7 @@ const Navbar = () => {
 					{
 						navItems.map(({path, title}) => (
 							<li key={path} className={"text-base text-primary"}>
-								<NavLink to={"path"} className={({ isActive }) => isActive ? "active" : ""}>
+								<NavLink to={path} className={({ isActive }) => isActive ? "active" : ""}>
 									{title}
 								</NavLink>
 							</li>
