@@ -4,7 +4,7 @@ import "../App.css"
 import {FiCalendar, FiClock, FiDollarSign, FiMapPin} from "react-icons/fi";
 
 const Card = ({data}) => {
-	const {jobTitle, companyName, companyLogo, minPrice, maxPrice, salaryType, jobLocation, employmentType, postingDate, description} = data
+	const {jobTitle, companyName, companyLogo, minPrice, maxPrice, jobLocation, employmentType, postingDate, description} = data
 
 	return (
 		<section className={"card"}>

@@ -40,7 +40,7 @@ async function run() {
       if (result.insertedId) {
         return res.status(200).send(result)
       } else {
-        return res.status(500).send({message: "Failed to post job, try again later"})
+        return res.status(500).send({message: "Failed to post job, try again later", status: false})
       }
     });
 
@@ -55,7 +55,7 @@ async function run() {
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 
