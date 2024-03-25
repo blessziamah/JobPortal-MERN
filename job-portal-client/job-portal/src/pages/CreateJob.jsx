@@ -9,6 +9,7 @@ const CreateJob = () => {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: {},
 	} = useForm()
 
@@ -27,6 +28,10 @@ const CreateJob = () => {
 		)
 			.then((result) => {
 				console.log(result)
+				if(result.acknowledged === true) {
+					alert("Job posted successfully")
+				}
+				reset()
 			})
 	}
 
@@ -158,7 +163,7 @@ const CreateJob = () => {
 									 className={"block w-full flex-1 border-1 bg-white py-1.5 pl-3 text-gray-900 placeholder:text-gray-900 focus:outline-none sm:text-sm sm:leading-6"}/>
 					</div>
 
-
+					{/*Submit button*/}
 					<input type="submit"
 								 className={"block mt-12 bg-blue text-white font-semibold px-8 py-2 rounded cursor-pointer"}/>
 				</form>
