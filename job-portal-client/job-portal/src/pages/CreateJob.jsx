@@ -55,6 +55,7 @@ const CreateJob = () => {
 			<div className={"bg-[#FAFAFA] py-10px-4 lg:px-16"}>
 				<form onSubmit={handleSubmit(onSubmit)} className={"space-y-5"}>
 
+
 					{/*First row of input*/}
 					<div className={"flex flex-col lg:flex-row items-center justify-between gap-8"}>
 						<div className={"lg:w-1/2 w-full"}>
@@ -134,7 +135,8 @@ const CreateJob = () => {
 					<div className={"flex flex-col lg:flex-row items-center justify-between gap-8"}>
 						<div className={"lg:w-1/2 w-full"}>
 							<label className={"block mb-2 text-lg"}>Company Logo</label>
-							<input type="url" placeholder={"Paste your company logo url: https://myimage.com"} {...register("companyLogo")}
+							<input type="url"
+										 placeholder={"Paste your company logo url: https://myimage.com"} {...register("companyLogo")}
 										 className={"block w-full flex-1 border-1 bg-white py-1.5 pl-3 text-gray-900 placeholder:text-gray-900 focus:outline-none sm:text-sm sm:leading-6"}/>
 						</div>
 						<div className={"lg:w-1/2 w-full"}>
@@ -153,7 +155,10 @@ const CreateJob = () => {
 					{/*Seventh row of input*/}
 					<div className={"w-full"}>
 						<label className={"block mb-2 text-lg"}>Job Description</label>
-						<textarea {...register("description")} className={"w-full pl-3 py-1.5 focus:outline-none placeholder:text-gray-700"} rows={6} placeholder={"Job Description"} defaultValue={"Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."}/>
+						<textarea {...register("description")}
+											className={"w-full pl-3 py-1.5 focus:outline-none placeholder:text-gray-700"} rows={6}
+											placeholder={"Job Description"}
+											defaultValue={"Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."}/>
 					</div>
 
 					{/*Last row of input*/}

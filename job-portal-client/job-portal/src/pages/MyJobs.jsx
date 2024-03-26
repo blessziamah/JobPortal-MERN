@@ -7,20 +7,6 @@ const MyJobs = () => {
 	const [searchText, setSearchText] = useState("")
 	const [isloading, setIsLoading] = useState(false)
 
-	useEffect(() => {
-		setIsLoading(true)
-		fetch("http://localhost:3000/my-jobs/tziamah1@gmail.com")
-			.then(res => res.json())
-			.then(data => setJobs(data))
-	}, []);
-
-	const handleSearch = () => {
-		const filter = jobs.filter((job) => job.jobTitle.toLowerCase().indexOf(searchText.toLowerCase()) !== -1)
-		console.log(filter)
-		setJobs(filter)
-		setIsLoading(false)
-	}
-
 	const handleDelete = (id) => {
 		// Send DELETE request to delete the job
 		fetch(`http://localhost:3000/job/${id}`, {method: "DELETE"})
@@ -32,6 +18,21 @@ const MyJobs = () => {
 					alert("Job deleted successfully");
 				}
 			})
+	}
+
+	useEffect(() => {
+		setIsLoading(true)
+		fetch(`http://localhost:3000/my-jobs/${email}`)
+			.then(res => res.json())
+			.then(data => setJobs(data))
+			.then(setIsLoading(false))
+	}, [handleDelete]);
+
+	const handleSearch = () => {
+		const filter = jobs.filter((job) => job.jobTitle.toLowerCase().indexOf(searchText.toLowerCase()) !== -1)
+		console.log(filter)
+		setJobs(filter)
+		setIsLoading(false)
 	}
 
 
@@ -98,43 +99,48 @@ const MyJobs = () => {
 								</tr>
 								</thead>
 
-								<tbody>
-
 								{
-									jobs.map((job, index) => (
-										<tr key={index}>
-											<th
-												className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
-												{index + 1}
-											</th>
-											<td
-												className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-												{job.jobTitle}
-											</td>
-											<td
-												className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												{job.companyName}
-											</td>
-											<td
-												className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
-												{job.minPrice}
-											</td>
-											<td
-												className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<button><Link to={`/edit-job/${job?._id}`}/>Edit</button>
-											</td>
-											<td
-												className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<button onClick={() => handleDelete(job._id)}
-																className={"bg-red-700 py-2 px-6 text-white rounded"}>Delete
-												</button>
-											</td>
-										</tr>
-									))
+									isloading ? (<div className={"flex items-center justify-center h-20"}><p>Loading....</p></div>) : (
+										<tbody>
+
+										{
+											jobs.map((job, index) => (
+												<tr key={index}>
+													<th
+														className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
+														{index + 1}
+													</th>
+													<td
+														className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+														{job.jobTitle}
+													</td>
+													<td
+														className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+														{job.companyName}
+													</td>
+													<td
+														className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+														<i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
+														$ {job.minPrice}
+													</td>
+													<td
+														className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+														<button><Link to={`/edit-job/${job?._id}`}/>Edit</button>
+													</td>
+													<td
+														className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+														<button onClick={() => handleDelete(job._id)}
+																		className={"bg-red-700 py-2 px-6 text-white rounded"}>Delete
+														</button>
+													</td>
+												</tr>
+											))
+										}
+
+										</tbody>
+									)
 								}
 
-								</tbody>
 
 							</table>
 						</div>
