@@ -6,6 +6,13 @@ const MyJobs = () => {
 	const [jobs, setJobs] = useState([])
 	const [searchText, setSearchText] = useState("")
 	const [isloading, setIsLoading] = useState(false)
+	const [deleted, setDeleted] = useState(false);
+
+
+	// Set current page
+	const [currentPage, setCurrentPage] = useState(1);
+	const itemsPerPage = 4
+
 
 	const handleDelete = (id) => {
 		// Send DELETE request to delete the job
@@ -16,6 +23,8 @@ const MyJobs = () => {
 				if (data.acknowledged === true) {
 					// Display alert message if deletion was successful
 					alert("Job deleted successfully");
+
+					setDeleted(prevState => !prevState);
 				}
 			})
 	}
@@ -26,7 +35,25 @@ const MyJobs = () => {
 			.then(res => res.json())
 			.then(data => setJobs(data))
 			.then(setIsLoading(false))
-	}, [handleDelete]);
+	}, [deleted, searchText]);
+
+	// Pagination
+	const indexOfLastItem = currentPage * itemsPerPage
+	const indexOfFirstItem = indexOfLastItem - itemsPerPage
+	const currentJobs = jobs.slice(indexOfFirstItem, indexOfLastItem)
+
+	// Next and Previous buttons
+	const nextPage = () => {
+		if(indexOfLastItem < jobs.length) {
+			setCurrentPage(currentPage + 1)
+		}
+	}
+
+	const prevPage = () => {
+		if(currentPage > 1) {
+			setCurrentPage(currentPage - 1)
+		}
+	}
 
 	const handleSearch = () => {
 		const filter = jobs.filter((job) => job.jobTitle.toLowerCase().indexOf(searchText.toLowerCase()) !== -1)
@@ -104,7 +131,7 @@ const MyJobs = () => {
 										<tbody>
 
 										{
-											jobs.map((job, index) => (
+											currentJobs.map((job, index) => (
 												<tr key={index}>
 													<th
 														className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
@@ -145,6 +172,20 @@ const MyJobs = () => {
 							</table>
 						</div>
 					</div>
+				</div>
+
+			{/*	Pagination */}
+				<div className={"flex justify-center space-x-8 mb-8 text-black"}>
+					{
+						currentPage > 1 && (
+							<button className={"hover:underline"} onClick={prevPage}>Previous</button>
+						)
+					}
+					{
+						indexOfLastItem < jobs.length && (
+							<button className={"hover:underline"} onClick={nextPage}>Next</button>
+						)
+					}
 				</div>
 			</section>
 		</div>
