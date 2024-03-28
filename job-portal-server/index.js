@@ -44,11 +44,27 @@ async function run() {
       }
     });
 
+    // Update a job
+    app.put("/update-job/:id", async (req, res) => {
+      const id = req.params.id
+      const job = req.body
+      job.updatedAt = new Date()
+      const result = await jobCollection.updateOne({_id: new ObjectId(id)}, {$set: {...job}})
+      res.send(result)
+    })
+
     // Get all jobs
     app.get("/all-jobs", async (req, res) => {
       const jobs = await jobCollection.find({}).toArray();
       res.send(jobs);
     });
+
+    // Get a job by id
+    app.get("/jobs/:id", async (req, res) => {
+      const id = req.params.id;
+      const job = await jobCollection.findOne({_id: new ObjectId(id)});
+      res.send(job);
+    })
 
     // Delete a job
     app.delete("/job/:id", async (req, res) => {
