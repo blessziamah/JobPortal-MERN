@@ -1,3 +1,3 @@
-## JobPortal-MERN
+# JobPortal-MERN
 
-### Stacks..
+## Stacks..
