@@ -1,3 +1,7 @@
 # JobPortal-MERN
 
-## Stacks..
+## Stacks
+- React
+- ExpressJs
+- NodeJs
+- MongoDB
