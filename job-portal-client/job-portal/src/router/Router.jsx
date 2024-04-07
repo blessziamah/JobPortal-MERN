@@ -6,21 +6,37 @@ import MyJobs from "../pages/MyJobs.jsx";
 import SalaryPage from "../pages/SalaryPage.jsx";
 import UpdateJob from "../pages/UpdateJob.jsx";
 import Login from "../components/Login.jsx";
+import ProtectedRoute from "../components/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <App />,
+		element: <App/>,
 		children: [
-			{path: "/", element: <Home />},
-			{path: "post-job", element: <CreateJob />},
-			{path: "my-job", element: <MyJobs />},
-			{path: "salary", element: <SalaryPage />},
-			{path: "/login", element: <Login />},
+			{path: "/", element: <Home/>},
+			{
+				path: "post-job",
+				element:
+					<ProtectedRoute>
+						<CreateJob/>
+					</ProtectedRoute>
+
+			},
+			{
+				path: "my-job",
+				element:
+					<ProtectedRoute>
+						<MyJobs/>
+					</ProtectedRoute>
+
+			},
+			{path: "salary", element: <SalaryPage/>},
+			{path: "/login", element: <Login/>},
 			{
 				path: `/edit-job/:id`,
-				element: <UpdateJob />,
-				loader: ({params}) => fetch(`http://localhost:3000/jobs/${params.id}`)}
+				element: <UpdateJob/>,
+				loader: ({params}) => fetch(`http://localhost:3000/jobs/${params.id}`)
+			}
 		]
 	}
 ])

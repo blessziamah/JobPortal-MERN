@@ -4,6 +4,7 @@ import Card from "../components/Card.jsx";
 import Jobs from "./Jobs.jsx";
 import Sidebar from "../sidebar/Sidebar.jsx";
 import Newsletter from "../components/Newsletter.jsx";
+import {data} from "autoprefixer";
 
 const Home = () => {
 	const [selectedCategory, setSelectedCategory] = useState(null)
