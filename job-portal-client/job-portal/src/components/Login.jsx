@@ -1,8 +1,6 @@
 import React from 'react';
-import { GoogleAuthProvider } from "firebase/auth";
-import { getAuth, signInWithPopup } from "firebase/auth";
-import apps from "../firebase/firebase.config.js";
-import {Navigate, redirect, useNavigate} from "react-router-dom";
+import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {useNavigate} from "react-router-dom";
 // import { redirect } from 'react-router-dom'; // Import useHistory from React Router
 
 const Login = () => {

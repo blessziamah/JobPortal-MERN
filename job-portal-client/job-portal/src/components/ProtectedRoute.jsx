@@ -1,7 +1,7 @@
-import { Navigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
-import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants.js";
-import { useEffect, useState } from "react";
+import {Navigate} from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
+import {ACCESS_TOKEN} from "../constants.js";
+import {useEffect, useState} from "react";
 
 const ProtectedRoute = ({ children }) => {
     const [isAuthorized, setIsAuthorized] = useState(null);
