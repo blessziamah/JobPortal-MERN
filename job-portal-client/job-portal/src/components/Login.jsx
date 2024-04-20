@@ -13,7 +13,7 @@ const Login = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        console.log(result);
        if(loggedUser) {
 				 navigate("/")
 			 }
